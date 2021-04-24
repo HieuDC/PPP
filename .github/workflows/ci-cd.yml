@@ -88,7 +88,7 @@ jobs:
           aws deploy create-deployment \
            --application-name ${{ matrix.appname }} \
            --deployment-config-name CodeDeployDefault.OneAtATime \
-           --ignore-application-stop-failures
+           --ignore-application-stop-failures \
            --deployment-group-name ${{ matrix.deploy-group }} \
            --file-exists-behavior OVERWRITE \
            --s3-location bucket=${{ matrix.s3-bucket }},key=${{ matrix.s3-filename }}.zip,bundleType=zip \
