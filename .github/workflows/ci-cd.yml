@@ -41,7 +41,7 @@ jobs:
         appname: ['ctv-assist']
         deploy-group: ['develop']
         s3-bucket: ['codedeploy-demo-1']
-        s3-filename: ['staging-ctv-assist-${{ github.sha }}']
+        s3-filename: ['dev-ctv-assist-${{ github.sha }}']
 
     needs: buildAndTest
     steps:
@@ -88,6 +88,7 @@ jobs:
           aws deploy create-deployment \
            --application-name ${{ matrix.appname }} \
            --deployment-config-name CodeDeployDefault.OneAtATime \
+           --ignore-application-stop-failures
            --deployment-group-name ${{ matrix.deploy-group }} \
            --file-exists-behavior OVERWRITE \
            --s3-location bucket=${{ matrix.s3-bucket }},key=${{ matrix.s3-filename }}.zip,bundleType=zip \
